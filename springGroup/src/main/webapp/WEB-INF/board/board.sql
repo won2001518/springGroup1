@@ -27,8 +27,9 @@ select now(), datediff(now(), wDate) from board order by idx desc;
 
 select *,
   timestampdiff(hour, wDate, now()) as hour_diff,
-  datediff(now(), wDate) as date_diff
-  from board order by idx desc limit 0,10;
+  datediff(now(), wDate) as date_diff,
+  (select count(*) from boardReply where boardIdx = b.idx) as replyCnt 
+  from board b order by idx desc limit 0,10;
 
 
 select * from board order by idx desc;
@@ -60,7 +61,9 @@ insert into boardReply values (default, 15, 'snm1234', '홍장군',default,'192.
 insert into boardReply values (default, 15, 'hkd1234', '홍장군',default,'192.168.50.55','댓글연습');
 
 select * from boardReply order by idx desc;
-delete from board where idx = 14;
+select * from boardReply where boardIdx=14 order by idx desc;
+select count(*) from boardReply where boardIdx=12;  
+delete from board where idx = 16;
 
 
 
