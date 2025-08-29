@@ -25,8 +25,8 @@ public class Extension5Controller extends HttpServlet {
 		HttpSession session = request.getSession();
 		String mid = (String) session.getAttribute("sMid");
 		if(mid == null) {
-			request.setAttribute("message", "로그인 후 사용하세요");
-			request.setAttribute("url", request.getContentType()+"study2/login/Login");
+			request.setAttribute("message", "로그인후 사용하세요");
+			request.setAttribute("url", request.getContextPath()+"/study2/login/Login");
 			viewPage = "/include/message";
 		}
 		else if(com.equals("Home5")) {

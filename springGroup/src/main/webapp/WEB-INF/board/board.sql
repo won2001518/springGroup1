@@ -22,24 +22,27 @@ insert into board values (default,'admin','관리맨','게시판 서비스를 �
 
 select * from board;
 
-select *,timestampdiff(hour, wDate, now()) from board order by idx desc limit 0,10;
+select *,timestampdiff(hour, wDate, now()) as hour_diff from board order by idx desc limit 0,10;
+
 select now(), datediff(now(), wDate) from board order by idx desc;
 
 select *,
   timestampdiff(hour, wDate, now()) as hour_diff,
   datediff(now(), wDate) as date_diff,
-  (select count(*) from boardReply where boardIdx = b.idx) as replyCnt 
+  (select count(*) from boardReply where boardIdx = b.idx) as replyCnt
   from board b order by idx desc limit 0,10;
-
 
 select * from board order by idx desc;
 
+-- 이전글 / 다음글 처리(예: 현재글은 idx 12번이라고 가정한다)
+select idx, title from board where idx < 12 order by idx desc limit 1;	/* 이전글 */
+select idx, title from board where idx > 12 order by idx limit 1;	/* 다음글 */
 
--- 이전글 / 다음글 철리(예: 현재글은 idx 12이라고 가정한다)
-select * from board where idx < 12 order by idx desc limit 1; /* 이전글 */
-select * from board where idx > 12 order by idx limit 1; /* 다음글글 */
+select * from board where nickName like '%홍%';
 
-/* 댓 글 처 리*/
+
+/* -------------------댓 글 처 리---------------------- */
+
 create table boardReply (
   idx  int not null auto_increment,/* 댓글 고유번호 */
   boardIdx int not null,					/* 부모글(원본글)의 고유번호 */
@@ -53,22 +56,12 @@ create table boardReply (
   on update cascade
   on delete restrict
 );
-desc boardReply;	
+desc boardReply;
 
-insert into boardReply values (default, 14, 'hkd1234', '홍장군',default,'192.168.50.55','댓글연습');
-insert into boardReply values (default, 14, 'snm1234', '홍장군',default,'192.168.50.55','댓글연습');
-insert into boardReply values (default, 15, 'snm1234', '홍장군',default,'192.168.50.55','댓글연습');
-insert into boardReply values (default, 15, 'hkd1234', '홍장군',default,'192.168.50.55','댓글연습');
+insert into boardReply values (default, 14, 'hkd1234','홍장군',default,'192.168.50.20','댓글연습!!!!');
+insert into boardReply values (default, 14, 'snm1234','독야청청',default,'192.168.50.19','수고하십니다.');
 
 select * from boardReply order by idx desc;
-select * from boardReply where boardIdx=14 order by idx desc;
-select count(*) from boardReply where boardIdx=12;  
-delete from board where idx = 16;
-
-
-
-
-
-
-
-
+select * from boardReply where boardIdx=25 order by idx desc;
+select count(*) as replyCnt from boardReply where boardIdx=25;
+delete from board where idx = 14;

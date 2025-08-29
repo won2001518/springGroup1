@@ -9,7 +9,7 @@ create table friend (
   age  int  default 20,
   gender char(2) default '여자',
   address varchar(30),
-  photo varchar(50), /*회원사진*/
+  photo  varchar(50),		/* 회원사진 */
   unique key(mid),
   unique key(nickName)
 );
@@ -17,9 +17,10 @@ create table friend (
 desc friend;
 drop table friend;
 
-insert into friend values (default, 'admin', '1234', '괸리맨', '관리자', 33, '남자', '서울');
+insert into friend values (default, 'admin', '1234', '관리맨', '관리자', 33, '남자', '서울');
 
 select * from friend;
 
-update friend set pwd = '2009719027' where idx =1;
-update friend set pwd = '2009719027' where idx =2;
+update friend set pwd = '4146042278' where idx = 1;
+update friend set pwd = '4146042278' where idx = 2;
+update friend set pwd = '4146042278' where idx = 3;

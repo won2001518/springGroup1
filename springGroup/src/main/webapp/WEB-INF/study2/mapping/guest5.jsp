@@ -16,7 +16,7 @@
 <div class="container">
   <h2>${msg}</h2>
   <hr/>
-  <div><a href="extension5.test5" class="btn btn-success">돌아기기</a></div>
+  <div><a href="extension5.test5" class="btn btn-success">돌아가기</a></div>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp" />

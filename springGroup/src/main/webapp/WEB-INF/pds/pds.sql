@@ -19,5 +19,3 @@ create table pds (
   foreign key(mid) references friend(mid)
 );
 
-desc pds;
-drop table pds;

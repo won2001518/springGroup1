@@ -14,5 +14,4 @@ public class Home5Command implements Extension4Interface {
 		request.setAttribute("msg", "이곳은 Home5Command객체 입니다.");
 	}
 
-
 }

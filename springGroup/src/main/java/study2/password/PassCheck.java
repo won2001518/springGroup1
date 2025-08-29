@@ -28,19 +28,20 @@ public class PassCheck extends HttpServlet {
 			System.out.println("암호화된 encPwd : " + encPwd);
 			
 			decPwd = encPwd ^ saltKey;
-			System.out.println("복구화된 decPwd : " + decPwd);
+			System.out.println("복호화된 decPwd : " + decPwd);
 		}
 		else if(flag == 2) {
 			int saltKey = (int)(Math.random()*99999-10001+1)+10001;
 			int encPwd, decPwd;
 			encPwd = Integer.parseInt(pwd) ^ saltKey;
-			System.out.println("암호화된 encPwd : " + encPwd);	
+			System.out.println("암호화된 encPwd : " + encPwd);
 			
-			// 복구화된 키를 DB에 저장시켜준다
-			System.out.println("DB저장 pwd :" + saltKey+encPwd);
+			// 복호화된 키를 DB에 저장시켜준다.
+			System.out.println("DB저장 pwd : " + (saltKey+""+encPwd));
 			
 			decPwd = encPwd ^ saltKey;
 			System.out.println("복호화된 decPwd : " + decPwd);
+			
 		}
 		
 		String viewPage = "/WEB-INF/study2/password/passForm.jsp";
